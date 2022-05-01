@@ -1,23 +1,21 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/landscapes.css">
 
-<h1>Landscapes</h1>
-<a class="btn btn-primary" href="/landscapes/new"> New Landscape </a>
-<%  for (let landscape of landscapes) { %>
-    <div class="card" mb-3>
-        <div class="row">
-            <div class="col-md-4">
-                <img class="img-fluid" alt="" src="<%= landscape.image %>">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><%= landscape.title %> </h5>
-                    <p class="card-text"><%= landscape.description %></p>
-                    <p class="card-text">
-                        <small class="text-muted"><%= landscape.location%></small>
-                    </p>
-                    <a class="btn btn-primary" href="/landscapes/<%=  landscape._id %>">View <%= landscape.title %></a>
-                </div>
-            </div>
+<h1 class="text-center mb-3">Check Out The Recent landscapes</h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% for (let landscape of landscapes) { %> 
+    <div class="col">
+      <div class="card m-3">
+        <img src="<%= landscape.images[0].url  %> " class="img-fluid" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= landscape.title %> </h5>
+          <p class="card-text"><%= landscape.body %> </p>
+          <p class="card-text">
+            <small class="text-muted"><%= landscape.location%></small>
+        </p>
+        <a class="btn btn-primary" href="/landscapes/<%=  landscape._id %>">View <%= landscape.title %></a>
         </div>
+      </div>
     </div>
-    <% }%>            
+    <% } %> 
+  </div>          

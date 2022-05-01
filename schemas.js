@@ -4,10 +4,10 @@ const { number } = require('joi');
 module.exports.landscapeSchema = Joi.object({
     landscape: Joi.object({
         title: Joi.string().required(),
-        image: Joi.string().required(),
         location: Joi.string().required(),
         description: Joi.string().required()
-    }).required()
+    }).required(),
+    deleteImages: Joi.array()
 });
 
 module.exports.reviewSchema = Joi.object({

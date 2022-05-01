@@ -1,9 +1,9 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="row">
+<div class="row d-flex justify-content-center">
     <h1 class="text-center">Edit landscape</h1>
-    <div class="col-6 offset-3">
-        <form action="/landscapes/<%=landscape._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+    <div class="col-8">
+        <form action="/landscapes/<%=landscape._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
                 <input class="form-control" type="text" id="title" name="landscape[title]"
@@ -21,14 +21,6 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="landscape[image]"
-                    value="https://source.unsplash.com/collection/483251" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
                 <textarea class="form-control" type="text" id="description" name="landscape[description]"
                     required><%= landscape.description%></textarea>
@@ -37,10 +29,27 @@
                 </div>
             </div>
             <div class="mb-3">
-                <button class="btn btn-info">Update landscape</button>
+                <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Add more image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div>
+            </div>
+            <div class="mb-3 d-flex justify-content-center">
+                <% landscape.images.forEach(function(img, i) {  %>
+                <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
+                <div class="form-check-inline d-flex align-items-center">
+                    <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                    <label for="image-<%=i%>">Delete?</label>
+                </div>
+                <% })%>
+            </div>
+            <div class="my-5">
+                <button class="btn btn-info mr-3">Update landscape</button>
+                <a href="/landscapes/<%= landscape._id%>" class="btn btn-primary">Back To landscape</a>
             </div>
         </form>
-        <a href="/landscapes/<%= landscape._id%>">Back To landscape</a>
-
     </div>
 </div>
