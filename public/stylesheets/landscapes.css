@@ -1,5 +1,11 @@
-body {
-    background-image: linear-gradient(to right,#bdc3c7, #2c3e50);
+.opening_picture {
+    height: 100vh;
+    background-image: url("https://res.cloudinary.com/djbhybwof/image/upload/v1651424844/Landscape/indexBackground_zyl0eo.jpg");
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
+
+
+
+

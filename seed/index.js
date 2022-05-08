@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { places, descriptors } = require('./seedHelpers');
 const Landscape = require('../models/landscape');
 const cities = require('./cities')
+const images = require('./images')
 
 mongoose.connect('mongodb://localhost:27017/landscapesDB', {
     useNewUrlParser: true,
@@ -22,18 +23,27 @@ const seedDB = async () => {
     await Landscape.deleteMany({});
     for (let i = 0; i < 50; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
+        const randomSeed1 = Math.floor(Math.random() * 21);
+        const randomSeed2 = Math.floor(Math.random() * 21);
         const landscape = new Landscape({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             author: '626bb9519da64cd393399e10',
             title: `${sample(descriptors)} ${sample(places)}`,
+            geometry: {
+                type: "Point",
+                coordinates: [
+                    cities[random1000].longitude,
+                    cities[random1000].latitude,
+                ]
+            },
             images: [
                 {
-                    url: 'https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ahfnenvca4tha00h2ubt.png',
-                    filename: 'YelpCamp/ahfnenvca4tha00h2ubt'
+                    url: `${images[randomSeed1].url}`,
+                    filename: `${images[randomSeed1].filename}`
                 },
                 {
-                    url: 'https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ruyoaxgf72nzpi4y6cdi.png',
-                    filename: 'YelpCamp/ruyoaxgf72nzpi4y6cdi'
+                    url: `${images[randomSeed2].url}`,
+                    filename: `${images[randomSeed2].filename}`
                 }
             ],
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',

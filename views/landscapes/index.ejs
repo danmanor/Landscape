@@ -1,21 +1,140 @@
-<% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/landscapes.css">
+<!DOCTYPE html>
+<html lang="en">
 
-<h1 class="text-center mb-3">Check Out The Recent landscapes</h1>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <% for (let landscape of landscapes) { %> 
-    <div class="col">
-      <div class="card m-3">
-        <img src="<%= landscape.images[0].url  %> " class="img-fluid" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><%= landscape.title %> </h5>
-          <p class="card-text"><%= landscape.body %> </p>
-          <p class="card-text">
-            <small class="text-muted"><%= landscape.location%></small>
-        </p>
-        <a class="btn btn-primary" href="/landscapes/<%=  landscape._id %>">View <%= landscape.title %></a>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/landscapes.css">
+  <title>Landscapes</title>
+</head>
+
+<body>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Landscape</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/landscapes">landscapes</a>
+          <a class="nav-link" href="/landscapes/new">New landscape</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+          <% if (!currentUser){ %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Register</a>
+            <% } else { %>
+              <a class="nav-link" href="/logout">Logout</a>
+              <% } %>
         </div>
       </div>
     </div>
-    <% } %> 
-  </div>          
+  </nav>
+
+  <%- include('../partials/flash') %>
+
+    <div class="opening_picture d-flex align-items-center justify-content-center">
+      <h1 class="text-center text-white mb-3 display-4">Check Out The Recent landscapes</h1>
+    </div>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-4">
+          <% for (let landscape of landscapesLeft){%>
+            <div class="card mb-3 border border-1 d-flex justify-content-center">
+              <% if (landscape.images.length) { %>
+                <img class="img-fluid" alt="" src="<%=landscape.images[0].url%>">
+                <% } else {%>
+                  <img class="img-fluid" alt=""
+                    src='https://res.cloudinary.com/djbhybwof/image/upload/v1651956449/Landscape/seed4_zmsqlk.jpg'>
+                  <% } %>
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= landscape.title %>
+                      </h5>
+
+                      <p class="card-text">
+                        <%= landscape.description %>
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">
+                          <%= landscape.location%>
+                        </small>
+                      </p>
+                      <a class="btn btn-primary" href="/landscapes/<%=landscape._id%>">View <%=landscape.title%></a>
+                    </div>
+            </div>
+            <% } %>
+        </div>
+        <div class="col-4">
+          <% for (let landscape of landscapesMid){%>
+            <div class="card mb-3 border border-1 d-flex justify-content-center">
+              <% if (landscape.images.length) { %>
+                <img class="img-fluid" alt="" src="<%=landscape.images[0].url%>">
+                <% } else {%>
+                  <img class="img-fluid" alt=""
+                    src='https://res.cloudinary.com/djbhybwof/image/upload/v1651956449/Landscape/seed4_zmsqlk.jpg'>
+                  <% } %>
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= landscape.title %>
+                      </h5>
+
+                      <p class="card-text">
+                        <%= landscape.description %>
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">
+                          <%= landscape.location%>
+                        </small>
+                      </p>
+                      <a class="btn btn-primary" href="/landscapes/<%=landscape._id%>">View <%=landscape.title%></a>
+                    </div>
+            </div>
+            <% } %>
+        </div>
+        <div class="col-4">
+          <% for (let landscape of landscapesRight){%>
+            <div class="card mb-3 border border-1 d-flex justify-content-center">
+              <% if (landscape.images.length) { %>
+                <img class="img-fluid" alt="" src="<%=landscape.images[0].url%>">
+                <% } else {%>
+                  <img class="img-fluid" alt=""
+                    src='https://res.cloudinary.com/djbhybwof/image/upload/v1651956449/Landscape/seed4_zmsqlk.jpg'>
+                  <% } %>
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= landscape.title %>
+                      </h5>
+
+                      <p class="card-text">
+                        <%= landscape.description %>
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">
+                          <%= landscape.location%>
+                        </small>
+                      </p>
+                      <a class="btn btn-primary" href="/landscapes/<%=landscape._id%>">View <%=landscape.title%></a>
+                    </div>
+            </div>
+            <% } %>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script src="/javascripts/landscapes.js"></script>
+</body>
+
+</html>

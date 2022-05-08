@@ -20,6 +20,9 @@ const User = require('./models/user');
 const { cloudinary, storage } = require("./cloudinary");
 const multer = require('multer');
 const upload = multer({ storage });
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 // mongoose config
 mongoose.connect('mongodb://localhost:27017/landscapesDB', 
@@ -86,11 +89,31 @@ app.get('/', (req, res) => {
 
 app.get('/landscapes',catchAsync( async (req, res) => {
     const landscapes = await Landscape.find({});
-    res.render('landscapes/index', { landscapes })
+    const landscapesLeft = [], landscapesMid = [], landscapesRight = [];
+    for (let i = 0 ; i < landscapes.length ; i++){
+        let col = i % 3;
+        switch (col){
+            case 0:
+                landscapesLeft.push(landscapes[i]);
+                break;
+            case 1:
+                landscapesMid.push(landscapes[i]);
+                break;
+            case 2:
+                landscapesRight.push(landscapes[i]);
+                break;
+        }
+    }
+    res.render('landscapes/index', { landscapesLeft, landscapesMid, landscapesRight })
 }))
 
 app.post('/landscapes', upload.array('image'), validateLandscape, isLoggedIn, catchAsync( async (req, res) => {
     const landscape = new Landscape(req.body.landscape);
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.landscape.location,
+        limit: 1
+    }).send()
+    landscape.geometry = geoData.body.features[0].geometry;
     landscape.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     landscape.author = req.user._id;
     await landscape.save();
