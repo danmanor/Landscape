@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
         integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <link rel="stylesheet" href="/stylesheets/show.css">
     <title>Landscape</title>
 </head>
 
 <body>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
-
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Landscape</a>
@@ -27,6 +26,7 @@
                     <a class="nav-link" href="/">Home</a>
                     <a class="nav-link" href="/landscapes">landscapes</a>
                     <a class="nav-link" href="/landscapes/new">New landscape</a>
+                    <a class="nav-link" href="/landscapes/map">Map</a>
                 </div>
                 <div class="navbar-nav ml-auto">
                     <% if (!currentUser){ %>

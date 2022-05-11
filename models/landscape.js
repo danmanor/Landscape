@@ -11,6 +11,8 @@ ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200');
 });
 
+const opts = { toJSON: { virtuals: true } };
+
 const LandscapeSchema = new Schema({
     title: String,
     location: String,
@@ -38,7 +40,13 @@ const LandscapeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
-})
+}, opts)
+
+LandscapeSchema.virtual('properties.popUpMarkup').get(function () {
+    return `
+    <strong><a href="/landscapes/${this._id}">${this.title}</a><strong>
+    `
+});
 
 LandscapeSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {

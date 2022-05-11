@@ -49,6 +49,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 
+// session config
 const sessionConfig = {
     secret: 'abc',
     resave: false,
@@ -59,8 +60,6 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
-
-// session config
 app.use(session(sessionConfig))
 
 // flash config
@@ -123,6 +122,11 @@ app.post('/landscapes', upload.array('image'), validateLandscape, isLoggedIn, ca
 
 app.get('/landscapes/new', isLoggedIn, (req, res) => {
     res.render('landscapes/new');
+})
+
+app.get('/landscapes/map', async (req, res) => {
+    const landscapes = await Landscape.find({});
+    res.render('landscapes/map', { landscapes })
 })
 
 app.get('/landscapes/:id', catchAsync( async (req, res) => {

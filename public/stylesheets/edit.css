@@ -1,5 +1,5 @@
 body {
-    height: 130vh;
+    height: 200vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://res.cloudinary.com/djbhybwof/image/upload/v1651955490/Landscape/editBackground_pvwfpb.jpg");
     background-size: cover;
@@ -10,45 +10,4 @@ body {
 .card {
     background-color: transparent;
     margin-top: 2%;
-}
-
-.navbar {
-    background-color: transparent;
-}
-.nav-link {
-    padding: 0.25rem 0;
-    font-weight: 700;
-    color: rgba(255,255,255,0.5);
-    margin-left: 1rem;
-    border-bottom: 0.25rem solid transparent;
-    margin-top: 0.5rem;
-}
-
-.nav-link:hover{
-    color: rgba(255,255,255,0.5);
-    border-bottom-color:rgba(255,255,255,0.5);
-}
-
-.nav-link.active {
-    color: white;
-    border-bottom-color:white;
-
-}
-
-.btn-secondary, .btn-secondary:hover{
-    color: #333;
-    text-shadow: none;
-}
-
-.form-button {
-  padding: 0.25rem 0;
-  font-weight: 700;
-  color: rgba(255,255,255,0.8);
-  margin-left: 1rem;
-  border-bottom: 0.25rem solid transparent;
-}
-
-.form-button:hover{
-  color: rgba(255,255,255,0.8);
-  border-bottom-color:rgba(255,255,255,0.8);
 }

@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+}
+
+#map {
+    height: 85%;
+    width: 100%;
+}
+
+#map-container {
+    height: 90vh;
+    width: 100%;
+}

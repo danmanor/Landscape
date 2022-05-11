@@ -25,9 +25,9 @@
                             class="btn btn-lg btn-secondary font-weight-bold border-white bg-white">View
                             landscapes</a>
                         <% if (!currentUser) { %>
-                            <div class="card mx-auto mt-3 border border-0 d-none d-md-block" style="width: 18rem;">
+                            <div class="card mx-auto mt-0 border border-0 d-none d-md-block" id="signIn">
                                 <div class="card-body">
-                                    <h5 class="card-title my-2">Sign In</h5>
+                                    <h5 class="card-title my-1">Sign In</h5>
                                     <form action="/login" method="POST" class="validated-form" novalidate>
                                         <div class="mb-3">
                                             <label class="form-label" for="username">Username</label>
