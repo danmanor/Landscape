@@ -4,6 +4,8 @@ const Landscape = require('../models/landscape');
 const cities = require('./cities')
 const images = require('./images')
 
+// mongoose config
+
 mongoose.connect('mongodb://localhost:27017/landscapesDB', {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -16,9 +18,16 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
+/**
+ * 
+ * @param {*} array 
+ * @returns a random sample of an array
+ */
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
-
+/**
+ * seeding the database with random data
+ */
 const seedDB = async () => {
     await Landscape.deleteMany({});
     for (let i = 0; i < 300; i++) {

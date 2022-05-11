@@ -1,6 +1,8 @@
 const Joi = require('joi');
 const { number } = require('joi');
 
+// Joi schemas for validation of landscapes and reviews
+
 module.exports.landscapeSchema = Joi.object({
     landscape: Joi.object({
         title: Joi.string().required(),

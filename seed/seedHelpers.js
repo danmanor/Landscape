@@ -1,3 +1,5 @@
+// descriptors and places for seed
+
 module.exports.descriptors = [
     'Forest',
     'Ancient',

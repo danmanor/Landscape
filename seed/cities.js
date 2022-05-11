@@ -1,3 +1,5 @@
+// array of cities in U.S.A
+
 module.exports = [
     {
         city: "New York",

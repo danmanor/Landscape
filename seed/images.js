@@ -1,3 +1,5 @@
+// images for seed
+
 module.exports = [
     {
         url: 'https://res.cloudinary.com/djbhybwof/image/upload/v1651956429/Landscape/seed1_vzer3k.jpg',
