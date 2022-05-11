@@ -18,7 +18,7 @@ module.exports.createReview = async (req, res) => {
 }
 
 /**
- * deleting the 
+ * deleting the review 
  * @param {*} req 
  * @param {*} res 
  */

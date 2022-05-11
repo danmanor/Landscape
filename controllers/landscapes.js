@@ -121,7 +121,7 @@ module.exports.updateLandscape = async (req, res) => {
 }
 
 /**
- * finding the landscape and deleting it, deleting the images from cloudinary
+ * finding the landscape and deleting it, deleting the images from cloudinary and also deleting his reviews
  * @param {*} req 
  * @param {*} res 
  */
