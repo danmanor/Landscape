@@ -17,6 +17,7 @@
       <a class="navbar-brand" href="#">Landscape</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
@@ -44,7 +45,8 @@
     </div>
     <div class="container mt-3">
       <div class="row">
-        <div class="col-4">
+        <div class="col-12"></div>
+        <div class="col-xs-12 col-md-6 col-lg-4">
           <% for (let landscape of landscapesLeft){%>
             <div class="card mb-3 border border-1 d-flex justify-content-center">
               <% if (landscape.images.length) { %>
@@ -71,7 +73,7 @@
             </div>
             <% } %>
         </div>
-        <div class="col-4">
+        <div class="d-none d-md-block col-md-6 col-lg-4">
           <% for (let landscape of landscapesMid){%>
             <div class="card mb-3 border border-1 d-flex justify-content-center">
               <% if (landscape.images.length) { %>
@@ -98,7 +100,7 @@
             </div>
             <% } %>
         </div>
-        <div class="col-4">
+        <div class="d-none d-lg-block col-lg-4">
           <% for (let landscape of landscapesRight){%>
             <div class="card mb-3 border border-1 d-flex justify-content-center">
               <% if (landscape.images.length) { %>

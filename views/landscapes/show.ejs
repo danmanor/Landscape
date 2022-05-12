@@ -42,7 +42,7 @@
 
     <div class="container">
         <div class="row mt-2">
-            <div class="col-6 px-0 py-0 mb-3">
+            <div class="d-block d-sm-inline col-12 col-sm-6 px-0 py-0 mb-3">
                 <div class="border boreder-1">
                     <div id="landscapeCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="d-block d-sm-inline col-12 col-sm-6">
                 <div id='map' class="mb-3"></div>
                 <h2>Leave a Review</h2>
                 <form action="/landscapes/<%=landscape._id%>/reviews" method="POST" class="mb-3 validated-form"
@@ -157,7 +157,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 
     <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
