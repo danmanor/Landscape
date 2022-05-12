@@ -38,7 +38,7 @@ const seedDB = async () => {
         const randomSeed2 = Math.floor(Math.random() * 21);
         const landscape = new Landscape({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
-            author: '626bb9519da64cd393399e10',
+            author: '627cb57a49e1c77b9edca677',
             title: `${sample(descriptors)} ${sample(places)}`,
             geometry: {
                 type: "Point",
