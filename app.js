@@ -14,14 +14,19 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
+const MongoStore = require('connect-mongo');
 
 // importing routes
 const userRoutes = require('./routes/users');
 const landscapeRoutes = require('./routes/landscapes');
 const reviewRoutes = require('./routes/reviews');
 
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/landscapesDB';
+const secret = process.env.SECRET || 'ABC'
+
+
 // mongoose config
-mongoose.connect('mongodb://localhost:27017/landscapesDB', 
+mongoose.connect(dbUrl, 
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -50,9 +55,21 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret: secret,
+    touchAfter: 24 * 60 * 60
+})
+
+store.on('error', function(e) {
+    console.log('Session Store Error', e)
+})
+
 // session config
 const sessionConfig = {
-    secret: 'abc',
+    store,
+    name: 'session',
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -109,6 +126,8 @@ app.use((err, req, res, next) => {
 
 // listening
 
-app.listen(3000, () => {
-    console.log('Listening on localhost:3000');
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
+    console.log(`Listening on port: ${port}`);
 })

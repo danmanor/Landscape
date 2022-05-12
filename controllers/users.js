@@ -1,9 +1,19 @@
 const User = require('../models/user');
 
-module.exports.renderRegister = async (req, res) => {
+/**
+ * rendering the 'register' page
+ * @param {*} req 
+ * @param {*} res 
+ */
+module.exports.renderRegister = (req, res) => {
     res.render('users/register');
 }
 
+/**
+ * parsing the form data and registering the user
+ * @param {*} req 
+ * @param {*} res 
+ */
 module.exports.register = async (req, res) => {
     try {
         const { email, username, password } = req.body;
@@ -20,10 +30,20 @@ module.exports.register = async (req, res) => {
     }
 }
 
+/**
+ * rendering the 'login' page
+ * @param {*} req 
+ * @param {*} res 
+ */
 module.exports.renderLogin = (req, res) => {
     res.render('users/login');
 }
 
+/**
+ * flashing a 'welcome back' message and redirecting to the last page which the user wanted to go, or 'home'
+ * @param {*} req 
+ * @param {*} res 
+ */
 module.exports.login = (req, res) => {
     req.flash('success', 'welcome back!');
     const redirectUrl = req.session.returnTo || '/';
@@ -31,6 +51,11 @@ module.exports.login = (req, res) => {
     res.redirect(redirectUrl);
 }
 
+/**
+ * logging out, redirecting to 'home'
+ * @param {*} req 
+ * @param {*} res 
+ */
 module.exports.logout = (req, res) => {
     req.logout();
     req.flash('success', "Goodbye!");
